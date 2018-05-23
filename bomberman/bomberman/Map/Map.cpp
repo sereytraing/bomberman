@@ -6,7 +6,7 @@
 //  Copyright © 2018 AlkRox. All rights reserved.
 //
 
-#include "map.hpp"
+#include "Map.hpp"
 
 int Map::getNbCases() {
     return this->nbCases;
@@ -30,10 +30,10 @@ void Map::initMap() {
                     if (j%2 == 0) {
                         printf("#");
                     } else {
-                        printf(" ");
+                        printf("_");
                     }
                 } else {
-                    printf(" ");
+                    printf("_");
                 }
             }
         }
