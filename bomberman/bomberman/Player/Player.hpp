@@ -17,8 +17,8 @@ class Player {
 private:
     int id;
 public:
-    Map() {}
-    Map(int id) {
+    Player() {}
+    Player(int id) {
         this->id = id;
     }
     int getId();
