@@ -16,6 +16,7 @@ using namespace std;
 class Map {
 private:
     int nbCases = 11;
+    string tab[11][11];
 public:
     Map() {}
     Map(int nbCases) {
@@ -24,6 +25,7 @@ public:
     int getNbCases();
     void setNbCases(int nb);
     void initMap();
+    void showMap();
 };
 
 #endif /* map_hpp */

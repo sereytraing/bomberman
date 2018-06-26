@@ -13,6 +13,6 @@ using namespace std;
 int main(int argc, const char * argv[]) {
     Map map = Map();
     map.initMap();
-    
+    map.showMap();
     return 0;
 }
