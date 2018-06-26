@@ -12,7 +12,8 @@ using namespace std;
 
 int main(int argc, const char * argv[]) {
     Map map = Map();
+    Player p1 = Player(1);
     map.initMap();
-    map.showMap();
+    map.addPlayer(p1);
     return 0;
 }

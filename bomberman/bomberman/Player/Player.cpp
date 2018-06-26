@@ -7,6 +7,7 @@
 //
 
 #include "Player.hpp"
+using namespace std;
 
 int Player::getId() {
     return this->id;
@@ -14,4 +15,8 @@ int Player::getId() {
 
 void Player::setId(int id) {
     this->id = id;
+}
+
+string Player::getIdStr() {
+    return to_string(this->id);
 }

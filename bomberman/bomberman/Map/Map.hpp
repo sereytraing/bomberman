@@ -11,21 +11,25 @@
 
 #include <stdio.h>
 #include <iostream>
+#include "Player.hpp"
+
 using namespace std;
 
 class Map {
 private:
-    int nbCases = 11;
-    string tab[11][11];
+    static const int nbCases = 11;
+    static const int nbPlayers = 4;
+    int indexTabPlayers = 0;
+    string tab[nbCases][nbCases];
+    Player players[nbPlayers];
 public:
     Map() {}
-    Map(int nbCases) {
-        this->nbCases = nbCases;
-    }
     int getNbCases();
-    void setNbCases(int nb);
+    int getIndexTabPlayers();
+    void setIndexTabPlayers(int i);
     void initMap();
     void showMap();
+    void addPlayer(Player player);
 };
 
 #endif /* map_hpp */

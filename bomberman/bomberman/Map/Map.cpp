@@ -7,14 +7,21 @@
 //
 
 #include "Map.hpp"
+#include "Player.hpp"
+#include <random>
+
 using namespace std;
 
 int Map::getNbCases() {
     return this->nbCases;
 }
 
-void Map::setNbCases(int nb) {
-    this->nbCases = nb;
+int Map::getIndexTabPlayers() {
+    return this->indexTabPlayers;
+}
+
+void Map::setIndexTabPlayers(int i) {
+    this->indexTabPlayers = i;
 }
 
 void Map::initMap() {
@@ -71,5 +78,23 @@ void Map::showMap() {
         cout<< this->tab[this->nbCases - 1][i];
     }
     printf("\n");
+}
+
+void Map::addPlayer(Player player) {
+    int i, j;
+    int min = 0;
+    int max = this->nbCases;
+    while(1) {
+        srand( (unsigned int) time(NULL));
+        i = rand()%(max-min + 1) + min;
+        j = rand()%(max-min + 1) + min;
+        if (this->tab[i][j] == "_") {
+            this->tab[i][j] = player.getIdStr();
+            this->players[this->indexTabPlayers] = player;
+            this->indexTabPlayers += 1;
+            this->showMap();
+            return;
+        }
+    }
 }
 

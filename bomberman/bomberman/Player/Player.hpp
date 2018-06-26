@@ -22,6 +22,7 @@ public:
         this->id = id;
     }
     int getId();
+    string getIdStr();
     void setId(int id);
 };
 
