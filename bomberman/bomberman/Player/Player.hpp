@@ -16,6 +16,8 @@ using namespace std;
 class Player {
 private:
     int id;
+    int x;
+    int y;
 public:
     Player() {}
     Player(int id) {
@@ -24,6 +26,10 @@ public:
     int getId();
     string getIdStr();
     void setId(int id);
+    int getX();
+    void setX(int x);
+    int getY();
+    void setY(int y);
 };
 
 #endif /* Player_hpp */

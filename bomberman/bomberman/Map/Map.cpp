@@ -90,6 +90,8 @@ void Map::addPlayer(Player player) {
         j = rand()%(max-min + 1) + min;
         if (this->tab[i][j] == "_") {
             this->tab[i][j] = player.getIdStr();
+            player.setY(j + 1); // car la premiere ligne de # et la derniere ne comptent pas dans le tableau
+            player.setX(i);
             this->players[this->indexTabPlayers] = player;
             this->indexTabPlayers += 1;
             this->showMap();
