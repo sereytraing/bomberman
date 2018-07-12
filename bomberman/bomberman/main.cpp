@@ -42,6 +42,7 @@ int main(int argc, const char * argv[]) {
         map.addPlayer(Player(i + 1));
     }
     
+    //Run
     while(true) {
         for(int i = 0; i < map.players.size(); i++) {
             cout << "START turn " << turn << " " << map.players[i].getId() << endl;
@@ -49,11 +50,12 @@ int main(int argc, const char * argv[]) {
             cout << "STOP turn " << turn << " " << map.players[i].getId() << endl;
             
             cout << "START actions " << turn << " " << map.players[i].getId() << endl;
-            cin >> action >> ws;
+            cin >> ws;
+            getline(cin, action);
             map.playerActions(map.players[i], action);
             cout << "STOP actions " << turn << " " << map.players[i].getId() << endl;
-
         }
+        
         if (map.isWinner()) {
             break;
         }
