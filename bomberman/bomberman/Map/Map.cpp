@@ -20,6 +20,22 @@ int Map::getIndexTabPlayers() {
     return this->indexTabPlayers;
 }
 
+int Map::getNbBombs() {
+    return this->nbBombs;
+}
+
+int Map::getBombDuration() {
+    return this->bombDuration;
+}
+
+int Map::getBombRadius() {
+    return this->bombRadius;
+}
+
+void Map::setNbPlayers(int nb) {
+    this->nbPlayers = nb;
+}
+
 void Map::setIndexTabPlayers(int i) {
     this->indexTabPlayers = i;
 }
@@ -92,11 +108,52 @@ void Map::addPlayer(Player player) {
             this->tab[i][j] = player.getIdStr();
             player.setY(j + 1); // car la premiere ligne de # et la derniere ne comptent pas dans le tableau
             player.setX(i);
-            this->players[this->indexTabPlayers] = player;
+            //this->players[this->indexTabPlayers] = player;
+            this->players.push_back(player);
             this->indexTabPlayers += 1;
-            this->showMap();
+            //this->showMap();
             return;
         }
     }
 }
 
+void Map::playerActions(Player player, string action) {
+    if (action == "NOACTION") {
+        return;
+    }
+    if (!(player.getIsAlive())) {
+        return;
+    }
+    
+    if ((action == "U") && (this->tab[player.getX()][player.getY() - 1] == "_")){
+        player.setY(player.getY() - 1);
+        this->tab[player.getX()][player.getY() - 1] = player.getIdStr();
+        this->tab[player.getX()][player.getY()] = "_";
+    }
+    
+    else if ((action == "D") && (this->tab[player.getX()][player.getY() + 1] == "_")){
+        player.setY(player.getY() + 1);
+        this->tab[player.getX()][player.getY() + 1] = player.getIdStr();
+        this->tab[player.getX()][player.getY()] = "_";
+    }
+    
+    else if ((action == "L") && (this->tab[player.getX() - 1][player.getY()] == "_")){
+        player.setX(player.getX() - 1);
+        this->tab[player.getX() - 1][player.getY()] = player.getIdStr();
+        this->tab[player.getX()][player.getY()] = "_";
+    }
+    
+    else if ((action == "D") && (this->tab[player.getX() + 1][player.getY()] == "_")){
+        player.setX(player.getX() + 1);
+        this->tab[player.getX() + 1][player.getY()] = player.getIdStr();
+        this->tab[player.getX()][player.getY()] = "_";
+    }
+    
+    else if ((action == "B")){
+        //poser bombe
+        /*player.setX(player.getX() + 1);
+        this->tab[player.getX() + 1][player.getY()] = player.getIdStr();
+        this->tab[player.getX()][player.getY()] = "_";*/
+    }
+    
+}

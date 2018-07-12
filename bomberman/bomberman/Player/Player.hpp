@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <string>
 using namespace std;
 
 class Player {
@@ -18,6 +19,7 @@ private:
     int id;
     int x;
     int y;
+    bool isAlive = true;
 public:
     Player() {}
     Player(int id) {
@@ -30,6 +32,8 @@ public:
     void setX(int x);
     int getY();
     void setY(int y);
+    bool getIsAlive();
+    void setIsAlive(bool isAlive);
 };
 
 #endif /* Player_hpp */

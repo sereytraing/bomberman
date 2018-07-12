@@ -7,6 +7,7 @@
 //
 
 #include "Player.hpp"
+#include <string>
 using namespace std;
 
 int Player::getId() {
@@ -35,4 +36,11 @@ void Player::setY(int y) {
 
 string Player::getIdStr() {
     return to_string(this->id);
+}
+
+bool Player::getIsAlive() {
+    return this->isAlive;
+}
+void Player::setIsAlive(bool isAlive) {
+    this->isAlive = isAlive;
 }

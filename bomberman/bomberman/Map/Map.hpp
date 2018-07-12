@@ -11,6 +11,9 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <string>
+#include <vector>
+
 #include "Player.hpp"
 
 using namespace std;
@@ -18,18 +21,27 @@ using namespace std;
 class Map {
 private:
     static const int nbCases = 11;
-    static const int nbPlayers = 4;
+    int nbPlayers;
+    int nbBombs = 10;
+    int bombDuration = 3;
+    int bombRadius = 3;
     int indexTabPlayers = 0;
     string tab[nbCases][nbCases];
-    Player players[nbPlayers];
 public:
+    vector<Player> players;
+    
     Map() {}
     int getNbCases();
     int getIndexTabPlayers();
+    int getNbBombs();
+    int getBombDuration();
+    int getBombRadius();
+    void setNbPlayers(int nb);
     void setIndexTabPlayers(int i);
     void initMap();
     void showMap();
     void addPlayer(Player player);
+    void playerActions(Player player, string action);
 };
 
 #endif /* map_hpp */
