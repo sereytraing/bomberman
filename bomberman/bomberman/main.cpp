@@ -20,6 +20,7 @@ int main(int argc, const char * argv[]) {
     
     int nbPlayers = 4;
     int turn = 1;
+    string action;
     Map map = Map();
     
     //Players
@@ -43,10 +44,15 @@ int main(int argc, const char * argv[]) {
     
     while(true) {
         for(int i = 0; i < map.players.size(); i++) {
-            cout << "START turn " << turn << " "<< map.players[i].getId() << endl;
-            cout << "STOP turn " << turn << " "<< map.players[i].getId() << endl;
-            //cout << "START actions " << turn << " "<< map.players[i].getId() << endl;
-            //cout << "STOP actions " << turn << " "<< map.players[i].getId() << endl;
+            cout << "START turn " << turn << " " << map.players[i].getId() << endl;
+            map.showMap();
+            cout << "STOP turn " << turn << " " << map.players[i].getId() << endl;
+            
+            cout << "START actions " << turn << " " << map.players[i].getId() << endl;
+            cin >> action >> ws;
+            map.playerActions(map.players[i], action);
+            cout << "STOP actions " << turn << " " << map.players[i].getId() << endl;
+
         }
         if (map.isWinner()) {
             break;
