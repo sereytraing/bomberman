@@ -178,7 +178,7 @@ void Map::triggerBomb() {
                         }
                     }
                     
-                    else if((this->tab[this->bombs[i].getX()][this->bombs[i].getY() + radius] != "#") &&
+                    if((this->tab[this->bombs[i].getX()][this->bombs[i].getY() + radius] != "#") &&
                        (this->tab[this->bombs[i].getX()][this->bombs[i].getY() + radius] != "_") &&
                        (this->tab[this->bombs[i].getX()][this->bombs[i].getY() + radius] != "o")) {
                         string idPlayer = this->tab[this->bombs[i].getX()][this->bombs[i].getY() + radius];
@@ -187,7 +187,7 @@ void Map::triggerBomb() {
                         }
                     }
                     
-                    else if((this->tab[this->bombs[i].getX() - radius][this->bombs[i].getY()] != "#") &&
+                    if((this->tab[this->bombs[i].getX() - radius][this->bombs[i].getY()] != "#") &&
                             (this->tab[this->bombs[i].getX() - radius][this->bombs[i].getY()] != "_") &&
                             (this->tab[this->bombs[i].getX() - radius][this->bombs[i].getY()] != "o")) {
                         string idPlayer = this->tab[this->bombs[i].getX() - radius][this->bombs[i].getY()];
@@ -196,7 +196,7 @@ void Map::triggerBomb() {
                         }
                     }
                     
-                    else if((this->tab[this->bombs[i].getX() + radius][this->bombs[i].getY()] != "#") &&
+                    if((this->tab[this->bombs[i].getX() + radius][this->bombs[i].getY()] != "#") &&
                             (this->tab[this->bombs[i].getX() + radius][this->bombs[i].getY()] != "_") &&
                             (this->tab[this->bombs[i].getX() + radius][this->bombs[i].getY()] != "o")) {
                         string idPlayer = this->tab[this->bombs[i].getX() + radius][this->bombs[i].getY()];

@@ -62,8 +62,9 @@ int main(int argc, const char * argv[]) {
             
             nextInputMustBe("START actions " + to_string(turn) + " " + to_string(map.players[i].getId()) );
             getline(cin, action);
-            
-            map.playerActions(map.players[i], action);
+            if (map.players[i].getIsAlive()) {
+                map.playerActions(map.players[i], action);
+            }
             nextInputMustBe("STOP actions " + to_string(turn) + " " + to_string(map.players[i].getId()) );
             
         }
