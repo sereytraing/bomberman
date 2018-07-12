@@ -24,6 +24,7 @@ public:
     Player() {}
     Player(int id) {
         this->id = id;
+        this->isAlive = true;
     }
     int getId();
     string getIdStr();

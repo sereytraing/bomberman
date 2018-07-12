@@ -71,7 +71,8 @@ void Map::showMap() {
     for (int i = 0; i < this->nbCases; i++) {
         cout<< this->tab[0][i];
     }
-    cout << "\n";
+    //cout << "\n";
+    cout << endl;
     for (int i = 0; i < this->nbCases; i++) {
         for(int j = 0; j < this->nbCases; j++) {
             if ((j == 0) || (j==nbCases-1)) {
@@ -88,12 +89,14 @@ void Map::showMap() {
                 }
             }
         }
-        cout << "\n";
+        //cout << "\n";
+        cout << endl;
     }
     for (int i = 0; i < this->nbCases; i++) {
         cout<< this->tab[this->nbCases - 1][i];
     }
-    cout << "\n";
+    //cout << "\n";
+    cout << endl;
 }
 
 void Map::addPlayer(Player player) {
@@ -151,10 +154,13 @@ void Map::playerActions(Player player, string action) {
     
     else if ((action == "B")){
         //poser bombe
-        this->tab[player.getX()][player.getY()] = to_string(player.getId() + 4);
+        //this->tab[player.getX()][player.getY()] = to_string(player.getId() + 4);
         /*player.setX(player.getX() + 1);
         this->tab[player.getX() + 1][player.getY()] = player.getIdStr();
         this->tab[player.getX()][player.getY()] = "_";*/
+    } else {
+        cerr << "ERROR player action" << endl;
+        exit(EXIT_FAILURE);
     }
 }
 

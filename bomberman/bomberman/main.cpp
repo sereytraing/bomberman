@@ -10,24 +10,29 @@
 #include "map.hpp"
 using namespace std;
 
+void nextInputMustBe(string value) {
+    string val = "";
+    getline(cin, val);
+    if (val != value) {
+        cerr << "expected input was '" << value << "' instead of '" << val << "'" << endl;
+        exit(EXIT_FAILURE);
+    }
+    return;
+}
+
 int main(int argc, const char * argv[]) {
-    /*Map map = Map();
-    Player p1 = Player(1);
-    Player p2 = Player(2);
-    map.initMap();
-    map.addPlayer(p1);
-    map.addPlayer(p2);*/
-    
-    int nbPlayers = 4;
+    int nbPlayers = 2;
+    string nbPlayersResponse = "";
     int turn = 1;
     string action;
     Map map = Map();
     
     //Players
-    cout << "START players" << endl;
-    //cin >> nbPlayers;
+    nextInputMustBe("START players");
+    getline(cin, nbPlayersResponse);
+    nbPlayers = stoi(nbPlayersResponse);
     map.setNbPlayers(nbPlayers);
-    cout << "STOP players" << endl;
+    nextInputMustBe("STOP players");
     
     //Settings
     cout << "START settings" << endl;
@@ -46,16 +51,20 @@ int main(int argc, const char * argv[]) {
     while(true) {
         for(int i = 0; i < map.players.size(); i++) {
             cout << "START turn " << turn << " " << map.players[i].getId() << endl;
-            map.showMap();
+            if (map.isWinner()) {
+                cout << "WINNER " << map.players[i].getId() << endl;
+            } else {
+                cout << map.getNbCases() << " "<<map.getNbCases() << endl; // height and width
+                map.showMap();
+            }
             cout << "STOP turn " << turn << " " << map.players[i].getId() << endl;
             
-            cout << "START actions " << turn << " " << map.players[i].getId() << endl;
-            cin >> ws;
+            nextInputMustBe("START actions " + to_string(turn) + " " + to_string(map.players[i].getId()) );
             getline(cin, action);
             map.playerActions(map.players[i], action);
-            cout << "STOP actions " << turn << " " << map.players[i].getId() << endl;
+            nextInputMustBe("STOP actions " + to_string(turn) + " " + to_string(map.players[i].getId()) );
+            
         }
-        
         if (map.isWinner()) {
             break;
         }
