@@ -24,7 +24,7 @@ int main(int argc, const char * argv[]) {
     int nbPlayers = 2;
     string nbPlayersResponse = "";
     int turn = 1;
-    string action;
+    string action = "";
     Map map = Map();
     
     //Players
@@ -49,6 +49,7 @@ int main(int argc, const char * argv[]) {
     
     //Run
     while(true) {
+        map.triggerBomb();
         for(int i = 0; i < map.players.size(); i++) {
             cout << "START turn " << turn << " " << map.players[i].getId() << endl;
             if (map.isWinner()) {
@@ -61,6 +62,7 @@ int main(int argc, const char * argv[]) {
             
             nextInputMustBe("START actions " + to_string(turn) + " " + to_string(map.players[i].getId()) );
             getline(cin, action);
+            
             map.playerActions(map.players[i], action);
             nextInputMustBe("STOP actions " + to_string(turn) + " " + to_string(map.players[i].getId()) );
             

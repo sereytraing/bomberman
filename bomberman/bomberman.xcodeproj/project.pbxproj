@@ -10,6 +10,7 @@
 		0F55B28F20B5B574005231B4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F55B28E20B5B574005231B4 /* main.cpp */; };
 		0F55B29720B5B640005231B4 /* Map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F55B29520B5B640005231B4 /* Map.cpp */; };
 		0F55B29B20B5BB58005231B4 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F55B29920B5BB58005231B4 /* Player.cpp */; };
+		0FFA1E8020F7FF5E00F66549 /* bomb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0FFA1E7E20F7FF5E00F66549 /* bomb.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,8 @@
 		0F55B29620B5B640005231B4 /* Map.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Map.hpp; sourceTree = "<group>"; };
 		0F55B29920B5BB58005231B4 /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
 		0F55B29A20B5BB58005231B4 /* Player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Player.hpp; sourceTree = "<group>"; };
+		0FFA1E7E20F7FF5E00F66549 /* bomb.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = bomb.cpp; sourceTree = "<group>"; };
+		0FFA1E7F20F7FF5E00F66549 /* bomb.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = bomb.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +69,7 @@
 				0F55B28E20B5B574005231B4 /* main.cpp */,
 				0F55B29820B5B9AF005231B4 /* Map */,
 				0F55B29C20B5BB78005231B4 /* Player */,
+				0FFA1E8120F7FF6100F66549 /* Bomb */,
 			);
 			path = bomberman;
 			sourceTree = "<group>";
@@ -86,6 +90,15 @@
 				0F55B29A20B5BB58005231B4 /* Player.hpp */,
 			);
 			path = Player;
+			sourceTree = "<group>";
+		};
+		0FFA1E8120F7FF6100F66549 /* Bomb */ = {
+			isa = PBXGroup;
+			children = (
+				0FFA1E7E20F7FF5E00F66549 /* bomb.cpp */,
+				0FFA1E7F20F7FF5E00F66549 /* bomb.hpp */,
+			);
+			path = Bomb;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F55B29720B5B640005231B4 /* Map.cpp in Sources */,
+				0FFA1E8020F7FF5E00F66549 /* bomb.cpp in Sources */,
 				0F55B28F20B5B574005231B4 /* main.cpp in Sources */,
 				0F55B29B20B5BB58005231B4 /* Player.cpp in Sources */,
 			);
