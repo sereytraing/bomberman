@@ -42,6 +42,7 @@ public:
     void showMap();
     void addPlayer(Player player);
     void playerActions(Player player, string action);
+    bool isWinner();
 };
 
 #endif /* map_hpp */

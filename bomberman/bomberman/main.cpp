@@ -45,8 +45,11 @@ int main(int argc, const char * argv[]) {
         for(int i = 0; i < map.players.size(); i++) {
             cout << "START turn " << turn << " "<< map.players[i].getId() << endl;
             cout << "STOP turn " << turn << " "<< map.players[i].getId() << endl;
-            cout << "START actions " << turn << " "<< map.players[i].getId() << endl;
-            cout << "STOP actions " << turn << " "<< map.players[i].getId() << endl;
+            //cout << "START actions " << turn << " "<< map.players[i].getId() << endl;
+            //cout << "STOP actions " << turn << " "<< map.players[i].getId() << endl;
+        }
+        if (map.isWinner()) {
+            break;
         }
         turn += 1;
     }

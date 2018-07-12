@@ -155,5 +155,14 @@ void Map::playerActions(Player player, string action) {
         this->tab[player.getX() + 1][player.getY()] = player.getIdStr();
         this->tab[player.getX()][player.getY()] = "_";*/
     }
-    
+}
+
+bool Map::isWinner() {
+    int count = 0;
+    for(int i = 0; i < this->players.size(); i++) {
+        if (this->players[i].getIsAlive()) {
+            count += 1;
+        }
+    }
+    return count == 1;
 }
