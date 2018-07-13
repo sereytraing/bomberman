@@ -54,6 +54,7 @@ int main(int argc, const char * argv[]) {
             cout << "START turn " << turn << " " << map.players[i].getId() << endl;
             if (map.isWinner()) {
                 cout << "WINNER" << map.players[i].getId() << endl;
+                break;
             } else {
                 cout << map.getNbCases() << " "<<map.getNbCases() << endl; // height and width
                 map.showMap();
@@ -69,7 +70,7 @@ int main(int argc, const char * argv[]) {
             
         }
         if (map.isWinner()) {
-            break;
+            return 0;
         }
         turn += 1;
     }

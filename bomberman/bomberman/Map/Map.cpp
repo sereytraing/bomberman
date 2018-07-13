@@ -109,27 +109,35 @@ void Map::playerActions(Player player, string action) {
     }
     
     if ((action == "U") && (this->tab[player.getX()][player.getY() - 1] == "_")) {
-        this->tab[player.getX()][player.getY()] = "_";
+        if (this->tab[player.getX()][player.getY()] == player.getIdStr()) {
+            this->tab[player.getX()][player.getY()] = "_";
+        }
         this->tab[player.getX()][player.getY() - 1] = player.getIdStr();
-        player.setY(player.getY() - 1);
+        this->players[player.getId() - 1].setY(player.getY() - 1);
     }
     
     else if ((action == "D") && (this->tab[player.getX()][player.getY() + 1] == "_")){
-        this->tab[player.getX()][player.getY()] = "_";
+        if (this->tab[player.getX()][player.getY()] == player.getIdStr()) {
+            this->tab[player.getX()][player.getY()] = "_";
+        }
         this->tab[player.getX()][player.getY() + 1] = player.getIdStr();
-        player.setY(player.getY() + 1);
+        this->players[player.getId() - 1].setY(player.getY() + 1);
     }
     
     else if ((action == "L") && (this->tab[player.getX() - 1][player.getY()] == "_")){
-        this->tab[player.getX()][player.getY()] = "_";
+        if (this->tab[player.getX()][player.getY()] == player.getIdStr()) {
+            this->tab[player.getX()][player.getY()] = "_";
+        }
         this->tab[player.getX() - 1][player.getY()] = player.getIdStr();
-        player.setX(player.getX() - 1);
+        this->players[player.getId() - 1].setX(player.getX() - 1);
     }
     
     else if ((action == "R") && (this->tab[player.getX() + 1][player.getY()] == "_")){
-        this->tab[player.getX()][player.getY()] = "_";
+        if (this->tab[player.getX()][player.getY()] == player.getIdStr()) {
+            this->tab[player.getX()][player.getY()] = "_";
+        }
         this->tab[player.getX() + 1][player.getY()] = player.getIdStr();
-        player.setX(player.getX() + 1);
+        this->players[player.getId() - 1].setX(player.getX() + 1);
     }
     
     else if ((action == "B") && (this->tab[player.getX()][player.getY()] != "o")){

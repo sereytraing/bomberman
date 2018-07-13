@@ -44,12 +44,12 @@ int main(int argc, const char * argv[]) {
     
     while(true) {
         nextInputMustBe("START turn " + to_string(turn));
-        //Ajoutez recuperation height width + grille
+        //No need height width / grille
         while(lineSettings != "STOP turn " + to_string(turn)) {
             getline(cin, lineSettings);
         }
         cout << "START action " << to_string(turn) << endl;
-        srand( (unsigned int) time(NULL));
+        srand(time(NULL));
         randomValue = rand()%(max-min + 1) + min;
         cout << choices[randomValue] << endl;
         cout << "STOP action " << to_string(turn) << endl;
