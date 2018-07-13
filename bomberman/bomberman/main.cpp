@@ -55,9 +55,11 @@ int main(int argc, const char * argv[]) {
             if (map.isWinner()) {
                 if (map.players[i].getIsAlive()) {
                     cout << "WINNER " << map.players[i].getId() << endl;
+                    exit(EXIT_SUCCESS);
                 }
             } else if (map.isDraw()) {
-                cout << "WINNER " << map.players[i].getId() << endl;
+                cout << "WINNER " << "draw" << endl;
+                exit(EXIT_SUCCESS);
             } else {
                 cout << map.getNbCases() << " "<< map.getNbCases() << endl; // height and width
                 map.showMap();
