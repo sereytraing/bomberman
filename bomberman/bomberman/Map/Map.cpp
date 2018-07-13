@@ -143,7 +143,7 @@ void Map::playerActions(Player player, string action) {
     else if ((action == "B") && (this->tab[player.getX()][player.getY()] != "o")){
         // Pas fini, gerer gestion max bomb
         if (indexTabBomb < nbBombs) {
-            this->tab[player.getX()][player.getY()] = "o";
+            this->tab[player.getX()][player.getY()] = to_string(player.getId() + 4);
             this->bombs[this->indexTabBomb] = Bomb(player.getId() + 4, player.getX(), player.getY(), this->getBombDuration(), this->indexTabBomb);
             this->indexTabBomb += 1;
         }
@@ -163,12 +163,16 @@ bool Map::isWinner() {
 void Map::triggerBomb() {
     for(int i = 0; i < this->nbBombs; i++) {
         if (this->bombs[i].getDuration() > (-1)) { //Valeur par defaut quand initialise
-
+            
+            if (this->tab[this->bombs[i].getX()][this->bombs[i].getY()] != "o") {
+                this->tab[this->bombs[i].getX()][this->bombs[i].getY()] = "o";
+            }
+            
             this->bombs[i].setDuration(this->bombs[i].getDuration() - 1);
             if (this->bombs[i].getDuration() == 0) {
                 
                 for(int radius = 0; radius <= this->getBombRadius(); radius++) {
-                    if((this->bombs[i].getY() - radius >= 0) &&
+                    /*if((this->bombs[i].getY() - radius >= 0) &&
                        (this->bombs[i].getY() - radius < nbCases) &&
                        (this->tab[this->bombs[i].getX()][this->bombs[i].getY() - radius] != "#") &&
                        (this->tab[this->bombs[i].getX()][this->bombs[i].getY() - radius] != "_") &&
@@ -256,7 +260,46 @@ void Map::triggerBomb() {
                         catch(string s) {
                             cout << "Invalid input for stoi " << s;
                         }
+                    }*/
+                    
+                    
+                    
+                    ///////////////////////
+                    
+                    for (int pIndex = 0; pIndex < nbPlayers; pIndex++) {
+                        if ((this->players[pIndex].getX() == this->bombs[i].getX()) &&
+                            (this->players[pIndex].getY() == this->bombs[i].getY() - radius)) {
+                            this->players[pIndex].setIsAlive(false);
+                            this->tab[this->players[pIndex].getX()][this->players[pIndex].getY()] = "_";
+                        }
                     }
+                    
+                    for (int pIndex = 0; pIndex < nbPlayers; pIndex++) {
+                        if ((this->players[pIndex].getX() == this->bombs[i].getX()) &&
+                            (this->players[pIndex].getY() == this->bombs[i].getY() + radius)) {
+                            this->players[pIndex].setIsAlive(false);
+                            this->tab[this->players[pIndex].getX()][this->players[pIndex].getY()] = "_";
+                        }
+                    }
+                    
+                    for (int pIndex = 0; pIndex < nbPlayers; pIndex++) {
+                        if ((this->players[pIndex].getX() == this->bombs[i].getX() - radius) &&
+                            (this->players[pIndex].getY() == this->bombs[i].getY())) {
+                            this->players[pIndex].setIsAlive(false);
+                            this->tab[this->players[pIndex].getX()][this->players[pIndex].getY()] = "_";
+                        }
+                    }
+                    
+                    for (int pIndex = 0; pIndex < nbPlayers; pIndex++) {
+                        if ((this->players[pIndex].getX() == this->bombs[i].getX() + radius) &&
+                            (this->players[pIndex].getY() == this->bombs[i].getY())) {
+                            this->players[pIndex].setIsAlive(false);
+                            this->tab[this->players[pIndex].getX()][this->players[pIndex].getY()] = "_";
+                        }
+                    }
+                    
+                    ///////////////////////
+                    
                     
                 } //for
                 this->tab[this->bombs[i].getX()][this->bombs[i].getY()] = "_";
