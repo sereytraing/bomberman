@@ -43,14 +43,11 @@ void Map::setIndexTabBomb(int i) {
 void Map::initMap() {
     
     for (int i = 0; i < this->nbCases; i++) {
-        this->tab[0][i] = "#";
-    }
-    for (int i = 0; i < this->nbCases; i++) {
         for(int j = 0; j < this->nbCases; j++) {
             if ((j == 0) || (j==nbCases-1)) {
                 this->tab[j][i] = "#";
             } else {
-                if (i%2 == 1) {
+                if (i%2 == 0) {
                     if (j%2 == 0) {
                         this->tab[j][i] = "#";
                     } else {
@@ -63,7 +60,11 @@ void Map::initMap() {
         }
     }
     for (int i = 0; i < this->nbCases; i++) {
-        this->tab[this->nbCases - 1][i] = "#";
+        this->tab[i][0] = "#";
+    }
+    
+    for (int i = 0; i < this->nbCases; i++) {
+        this->tab[i][this->nbCases - 1] = "#";
     }
     
     for(int i = 0; i < this->nbBombs; i++) {
@@ -73,22 +74,11 @@ void Map::initMap() {
 
 void Map::showMap() {
     for (int i = 0; i < this->nbCases; i++) {
-        cout<< this->tab[0][i];
-    }
-    //cout << "\n";
-    cout << endl;
-    for (int i = 0; i < this->nbCases; i++) {
         for(int j = 0; j < this->nbCases; j++) {
             cout<< this->tab[j][i];
         }
-        //cout << "\n";
         cout << endl;
     }
-    for (int i = 0; i < this->nbCases; i++) {
-        cout<< this->tab[this->nbCases - 1][i];
-    }
-    //cout << "\n";
-    cout << endl;
 }
 
 void Map::addPlayer(Player player) {
@@ -143,12 +133,8 @@ void Map::playerActions(Player player, string action) {
     }
     
     else if ((action == "B")){
-        //this->tab[player.getX()][player.getY()] = to_string(player.getId() + 4);
         this->tab[player.getX()][player.getY()] = "o";
         this->bombs[this->indexTabBomb] = Bomb(player.getId() + 4, player.getX(), player.getY(), this->getBombDuration());
-    } else {
-        cerr << "ERROR TEST DEBUG player action" << endl;
-        exit(EXIT_FAILURE);
     }
 }
 
@@ -173,8 +159,20 @@ void Map::triggerBomb() {
                        (this->tab[this->bombs[i].getX()][this->bombs[i].getY() - radius] != "_") &&
                        (this->tab[this->bombs[i].getX()][this->bombs[i].getY() - radius] != "o")) {
                         string idPlayer = this->tab[this->bombs[i].getX()][this->bombs[i].getY() - radius];
-                        if (stoi(idPlayer) <= this->nbPlayers) {
-                            this->players[stoi(idPlayer)].setIsAlive(false);
+                        
+                        try {
+                            if (stoi(idPlayer) <= this->nbPlayers) {
+                                this->players[stoi(idPlayer)].setIsAlive(false);
+                                int x = this->players[stoi(idPlayer)].getX();
+                                int y = this->players[stoi(idPlayer)].getY();
+                                this->tab[x][y] = "_";
+                            }
+                        }
+                        catch(int i) {
+                            
+                        }
+                        catch(string s) {
+                            cout << "Invalid input for stoi " << s;
                         }
                     }
                     
@@ -182,8 +180,19 @@ void Map::triggerBomb() {
                        (this->tab[this->bombs[i].getX()][this->bombs[i].getY() + radius] != "_") &&
                        (this->tab[this->bombs[i].getX()][this->bombs[i].getY() + radius] != "o")) {
                         string idPlayer = this->tab[this->bombs[i].getX()][this->bombs[i].getY() + radius];
-                        if (stoi(idPlayer) <= this->nbPlayers) {
-                            this->players[stoi(idPlayer)].setIsAlive(false);
+                        try {
+                            if (stoi(idPlayer) <= this->nbPlayers) {
+                                this->players[stoi(idPlayer)].setIsAlive(false);
+                                int x = this->players[stoi(idPlayer)].getX();
+                                int y = this->players[stoi(idPlayer)].getY();
+                                this->tab[x][y] = "_";
+                            }
+                        }
+                        catch(int i) {
+                            
+                        }
+                        catch(string s) {
+                            cout << "Invalid input for stoi " << s;
                         }
                     }
                     
@@ -191,8 +200,19 @@ void Map::triggerBomb() {
                             (this->tab[this->bombs[i].getX() - radius][this->bombs[i].getY()] != "_") &&
                             (this->tab[this->bombs[i].getX() - radius][this->bombs[i].getY()] != "o")) {
                         string idPlayer = this->tab[this->bombs[i].getX() - radius][this->bombs[i].getY()];
-                        if (stoi(idPlayer) <= this->nbPlayers) {
-                            this->players[stoi(idPlayer)].setIsAlive(false);
+                        try {
+                            if (stoi(idPlayer) <= this->nbPlayers) {
+                                this->players[stoi(idPlayer)].setIsAlive(false);
+                                int x = this->players[stoi(idPlayer)].getX();
+                                int y = this->players[stoi(idPlayer)].getY();
+                                this->tab[x][y] = "_";
+                            }
+                        }
+                        catch(int i) {
+                            
+                        }
+                        catch(string s) {
+                            cout << "Invalid input for stoi " << s;
                         }
                     }
                     
@@ -200,8 +220,19 @@ void Map::triggerBomb() {
                             (this->tab[this->bombs[i].getX() + radius][this->bombs[i].getY()] != "_") &&
                             (this->tab[this->bombs[i].getX() + radius][this->bombs[i].getY()] != "o")) {
                         string idPlayer = this->tab[this->bombs[i].getX() + radius][this->bombs[i].getY()];
-                        if (stoi(idPlayer) <= this->nbPlayers) {
-                            this->players[stoi(idPlayer)].setIsAlive(false);
+                        try {
+                            if (stoi(idPlayer) <= this->nbPlayers) {
+                                this->players[stoi(idPlayer)].setIsAlive(false);
+                                int x = this->players[stoi(idPlayer)].getX();
+                                int y = this->players[stoi(idPlayer)].getY();
+                                this->tab[x][y] = "_";
+                            }
+                        }
+                        catch(int i) {
+                            
+                        }
+                        catch(string s) {
+                            cout << "Invalid input for stoi " << s;
                         }
                     }
                     
