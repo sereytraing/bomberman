@@ -166,12 +166,13 @@ void Map::triggerBomb() {
             this->bombs[i].setDuration(this->bombs[i].getDuration() - 1);
             if (this->bombs[i].getDuration() == 0) {
                 
-                for(int radius = 1; radius <= this->getBombRadius(); radius++) {
-                    if((this->tab[this->bombs[i].getX()][this->bombs[i].getY() - radius] != "#") &&
+                for(int radius = 0; radius <= this->getBombRadius(); radius++) {
+                    if((this->bombs[i].getY() - radius >= 0) &&
+                       (this->bombs[i].getY() - radius < nbCases) &&
+                       (this->tab[this->bombs[i].getX()][this->bombs[i].getY() - radius] != "#") &&
                        (this->tab[this->bombs[i].getX()][this->bombs[i].getY() - radius] != "_") &&
                        (this->tab[this->bombs[i].getX()][this->bombs[i].getY() - radius] != "o")) {
                         string idPlayer = this->tab[this->bombs[i].getX()][this->bombs[i].getY() - radius];
-                        
                         try {
                             if (stoi(idPlayer) <= this->nbPlayers) {
                                 this->players[stoi(idPlayer)].setIsAlive(false);
@@ -188,7 +189,9 @@ void Map::triggerBomb() {
                         }
                     }
                     
-                    if((this->tab[this->bombs[i].getX()][this->bombs[i].getY() + radius] != "#") &&
+                    if((this->bombs[i].getY() + radius >= 0) &&
+                       (this->bombs[i].getY() + radius < nbCases) &&
+                       (this->tab[this->bombs[i].getX()][this->bombs[i].getY() + radius] != "#") &&
                        (this->tab[this->bombs[i].getX()][this->bombs[i].getY() + radius] != "_") &&
                        (this->tab[this->bombs[i].getX()][this->bombs[i].getY() + radius] != "o")) {
                         string idPlayer = this->tab[this->bombs[i].getX()][this->bombs[i].getY() + radius];
@@ -208,9 +211,11 @@ void Map::triggerBomb() {
                         }
                     }
                     
-                    if((this->tab[this->bombs[i].getX() - radius][this->bombs[i].getY()] != "#") &&
-                            (this->tab[this->bombs[i].getX() - radius][this->bombs[i].getY()] != "_") &&
-                            (this->tab[this->bombs[i].getX() - radius][this->bombs[i].getY()] != "o")) {
+                    if((this->bombs[i].getX() - radius >= 0) &&
+                       (this->bombs[i].getX() - radius < nbCases) &&
+                       (this->tab[this->bombs[i].getX() - radius][this->bombs[i].getY()] != "#") &&
+                       (this->tab[this->bombs[i].getX() - radius][this->bombs[i].getY()] != "_") &&
+                       (this->tab[this->bombs[i].getX() - radius][this->bombs[i].getY()] != "o")) {
                         string idPlayer = this->tab[this->bombs[i].getX() - radius][this->bombs[i].getY()];
                         try {
                             if (stoi(idPlayer) <= this->nbPlayers) {
@@ -228,9 +233,11 @@ void Map::triggerBomb() {
                         }
                     }
                     
-                    if((this->tab[this->bombs[i].getX() + radius][this->bombs[i].getY()] != "#") &&
-                            (this->tab[this->bombs[i].getX() + radius][this->bombs[i].getY()] != "_") &&
-                            (this->tab[this->bombs[i].getX() + radius][this->bombs[i].getY()] != "o")) {
+                    if((this->bombs[i].getX() + radius >= 0) &&
+                       (this->bombs[i].getX() / radius < nbCases) &&
+                       (this->tab[this->bombs[i].getX() + radius][this->bombs[i].getY()] != "#") &&
+                       (this->tab[this->bombs[i].getX() + radius][this->bombs[i].getY()] != "_") &&
+                       (this->tab[this->bombs[i].getX() + radius][this->bombs[i].getY()] != "o")) {
                         string idPlayer = this->tab[this->bombs[i].getX() + radius][this->bombs[i].getY()];
                         try {
                             if (stoi(idPlayer) <= this->nbPlayers) {

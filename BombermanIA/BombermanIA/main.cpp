@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <random>
+#include <ctime>
 
 using namespace std;
 
@@ -49,7 +50,7 @@ int main(int argc, const char * argv[]) {
             getline(cin, lineSettings);
         }
         cout << "START action " << to_string(turn) << endl;
-        srand(time(NULL));
+        //srand((unsigned int)time(NULL));
         randomValue = rand()%(max-min + 1) + min;
         cout << choices[randomValue] << endl;
         cout << "STOP action " << to_string(turn) << endl;
