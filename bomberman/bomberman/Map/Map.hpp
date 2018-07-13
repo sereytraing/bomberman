@@ -47,6 +47,7 @@ public:
     void playerActions(Player player, string action);
     bool isWinner();
     void triggerBomb();
+    bool isDraw();
 };
 
 #endif /* map_hpp */

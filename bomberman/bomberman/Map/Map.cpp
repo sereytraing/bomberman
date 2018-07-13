@@ -160,6 +160,16 @@ bool Map::isWinner() {
     return count == 1;
 }
 
+bool Map::isDraw() {
+    int count = 0;
+    for(int i = 0; i < this->players.size(); i++) {
+        if (this->players[i].getIsAlive()) {
+            count += 1;
+        }
+    }
+    return count == 0;
+}
+
 void Map::triggerBomb() {
     for(int i = 0; i < this->nbBombs; i++) {
         if (this->bombs[i].getDuration() > (-1)) { //Valeur par defaut quand initialise
@@ -268,7 +278,8 @@ void Map::triggerBomb() {
                     
                     for (int pIndex = 0; pIndex < nbPlayers; pIndex++) {
                         if ((this->players[pIndex].getX() == this->bombs[i].getX()) &&
-                            (this->players[pIndex].getY() == this->bombs[i].getY() - radius)) {
+                            (this->players[pIndex].getY() == this->bombs[i].getY() - radius) &&
+                            (this->players[pIndex].getIsAlive())) {
                             this->players[pIndex].setIsAlive(false);
                             this->tab[this->players[pIndex].getX()][this->players[pIndex].getY()] = "_";
                         }
@@ -276,7 +287,8 @@ void Map::triggerBomb() {
                     
                     for (int pIndex = 0; pIndex < nbPlayers; pIndex++) {
                         if ((this->players[pIndex].getX() == this->bombs[i].getX()) &&
-                            (this->players[pIndex].getY() == this->bombs[i].getY() + radius)) {
+                            (this->players[pIndex].getY() == this->bombs[i].getY() + radius) &&
+                            (this->players[pIndex].getIsAlive())) {
                             this->players[pIndex].setIsAlive(false);
                             this->tab[this->players[pIndex].getX()][this->players[pIndex].getY()] = "_";
                         }
@@ -284,7 +296,8 @@ void Map::triggerBomb() {
                     
                     for (int pIndex = 0; pIndex < nbPlayers; pIndex++) {
                         if ((this->players[pIndex].getX() == this->bombs[i].getX() - radius) &&
-                            (this->players[pIndex].getY() == this->bombs[i].getY())) {
+                            (this->players[pIndex].getY() == this->bombs[i].getY()) &&
+                            (this->players[pIndex].getIsAlive())) {
                             this->players[pIndex].setIsAlive(false);
                             this->tab[this->players[pIndex].getX()][this->players[pIndex].getY()] = "_";
                         }
@@ -292,7 +305,8 @@ void Map::triggerBomb() {
                     
                     for (int pIndex = 0; pIndex < nbPlayers; pIndex++) {
                         if ((this->players[pIndex].getX() == this->bombs[i].getX() + radius) &&
-                            (this->players[pIndex].getY() == this->bombs[i].getY())) {
+                            (this->players[pIndex].getY() == this->bombs[i].getY()) &&
+                            (this->players[pIndex].getIsAlive())) {
                             this->players[pIndex].setIsAlive(false);
                             this->tab[this->players[pIndex].getX()][this->players[pIndex].getY()] = "_";
                         }
