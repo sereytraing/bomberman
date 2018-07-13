@@ -21,6 +21,7 @@ private:
     int x;
     int y;
     int duration;
+    int index;
     
 public:
     Bomb() {
@@ -29,11 +30,12 @@ public:
         this->y = -1;
         this->duration = -1;
     }
-    Bomb(int value, int x, int y, int duration) {
+    Bomb(int value, int x, int y, int duration, int index) {
         this->value = value;
         this->x = x;
         this->y = y;
         this->duration = duration;
+        this->index = index;
     }
     int getValue();
     void setValue(int value);
@@ -43,6 +45,8 @@ public:
     void setY(int y);
     int getDuration();
     void setDuration(int duration);
+    int getIndex();
+    void setIndex(int index);
 };
 
 #endif /* bomb_hpp */

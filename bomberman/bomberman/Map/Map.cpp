@@ -108,33 +108,37 @@ void Map::playerActions(Player player, string action) {
         return;
     }
     
-    if ((action == "U") && (this->tab[player.getX()][player.getY() - 1] == "_")){
-        this->tab[player.getX()][player.getY() - 1] = player.getIdStr();
+    if ((action == "U") && (this->tab[player.getX()][player.getY() - 1] == "_")) {
         this->tab[player.getX()][player.getY()] = "_";
+        this->tab[player.getX()][player.getY() - 1] = player.getIdStr();
         player.setY(player.getY() - 1);
     }
     
     else if ((action == "D") && (this->tab[player.getX()][player.getY() + 1] == "_")){
-        this->tab[player.getX()][player.getY() + 1] = player.getIdStr();
         this->tab[player.getX()][player.getY()] = "_";
+        this->tab[player.getX()][player.getY() + 1] = player.getIdStr();
         player.setY(player.getY() + 1);
     }
     
     else if ((action == "L") && (this->tab[player.getX() - 1][player.getY()] == "_")){
-        this->tab[player.getX() - 1][player.getY()] = player.getIdStr();
         this->tab[player.getX()][player.getY()] = "_";
+        this->tab[player.getX() - 1][player.getY()] = player.getIdStr();
         player.setX(player.getX() - 1);
     }
     
-    else if ((action == "D") && (this->tab[player.getX() + 1][player.getY()] == "_")){
-        this->tab[player.getX() + 1][player.getY()] = player.getIdStr();
+    else if ((action == "R") && (this->tab[player.getX() + 1][player.getY()] == "_")){
         this->tab[player.getX()][player.getY()] = "_";
+        this->tab[player.getX() + 1][player.getY()] = player.getIdStr();
         player.setX(player.getX() + 1);
     }
     
-    else if ((action == "B")){
+    else if ((action == "B") && (this->tab[player.getX()][player.getY()] != "o")){
+        // Pas fini, gerer gestion max bomb
         this->tab[player.getX()][player.getY()] = "o";
-        this->bombs[this->indexTabBomb] = Bomb(player.getId() + 4, player.getX(), player.getY(), this->getBombDuration());
+        this->bombs[this->indexTabBomb] = Bomb(player.getId() + 4, player.getX(), player.getY(), this->getBombDuration(), this->indexTabBomb);
+        if (indexTabBomb < nbBombs) {
+            this->indexTabBomb += 1;
+        }
     }
 }
 
@@ -236,8 +240,9 @@ void Map::triggerBomb() {
                         }
                     }
                     
-                }
-            }
+                } //for
+                this->tab[this->bombs[i].getX()][this->bombs[i].getY()] = "_";
+            } // if bomb duration
         }
     }
 }

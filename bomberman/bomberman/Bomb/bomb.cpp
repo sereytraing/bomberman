@@ -41,3 +41,11 @@ int Bomb::getDuration() {
 void Bomb::setDuration(int duration) {
     this->duration = duration;
 }
+
+int Bomb::getIndex() {
+    return this->index;
+}
+
+void Bomb::setIndex(int index) {
+    this->index = index;
+}
