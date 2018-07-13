@@ -53,9 +53,9 @@ int main(int argc, const char * argv[]) {
         for(int i = 0; i < map.players.size(); i++) {
             cout << "START turn " << turn << " " << map.players[i].getId() << endl;
             if (map.isWinner()) {
-                cout << "WINNER" << map.players[i].getId() << endl;
+                cout << "WINNER " << map.players[i].getId() << endl;
             } else {
-                cout << map.getNbCases() << " "<<map.getNbCases() << endl; // height and width
+                cout << map.getNbCases() << " "<< map.getNbCases() << endl; // height and width
                 map.showMap();
             }
             cout << "STOP turn " << turn << " " << map.players[i].getId() << endl;
