@@ -22,6 +22,14 @@ void nextInputMustBe(string value) {
     return;
 }
 
+int rand(int min, int max){
+    std::random_device rd;
+    std::mt19937 rng(rd());
+    std::uniform_int_distribution<int> uni(min,max);
+    auto rand_int = uni(rng);
+    return rand_int;
+}
+
 int main(int argc, const char * argv[]) {
     
     string idPlayer = "";
@@ -51,11 +59,10 @@ int main(int argc, const char * argv[]) {
         }
         cout << "START action " << to_string(turn) << endl;
         srand((unsigned int)time(NULL));
-        randomValue = rand()%(max-min + 1) + min;
+        randomValue = rand(min, max);
         cout << choices[randomValue] << endl;
         cout << "STOP action " << to_string(turn) << endl;
         turn += 1;
     }
-    
     return 0;
 }
